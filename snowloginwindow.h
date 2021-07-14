@@ -5,6 +5,7 @@
 #include <QNetworkAccessManager>
 #include <QNetworkCookie>
 #include <QNetworkReply>
+#include <QWebEngineView>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class SnowLoginWindow; }
@@ -22,11 +23,11 @@ private slots:
     void onLoginButtonClicked();
     void onRequestCaptchaImageFinished();
     void onLoginFinished();
+    void displayAiocpWebView();
 
 private:
     void startRequestingCaptchaImage();
     void startSendingLoginRequest();
-    void displayAiocpWebView();
 
     Ui::SnowLoginWindow *ui;
     QNetworkAccessManager *networkManager;
@@ -34,5 +35,6 @@ private:
     QNetworkReply *loginReply;
     QList<QNetworkCookie> cookiesForAIOCP;
     QString captchaCode;
+    QWebEngineView yzTelecomAiocpView;
 };
 #endif // SNOWLOGINWINDOW_H
