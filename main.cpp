@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
     QApplication::setApplicationName("YongzhouTelecom-AIOCP");
     QApplication::setApplicationVersion("0.1.0");
     QApplication::setOrganizationDomain("xuefeng.space");
-    setApplicationProxy(app);
+//    setApplicationProxy(app);
 
     SnowLoginWindow loginWindow;
     loginWindow.show();

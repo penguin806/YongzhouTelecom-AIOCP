@@ -21,6 +21,7 @@ public:
 private slots:
     void onLoginButtonClicked();
     void onRequestCaptchaImageFinished();
+    void onLoginFinished();
 
 private:
     void startRequestingCaptchaImage();
@@ -30,6 +31,7 @@ private:
     Ui::SnowLoginWindow *ui;
     QNetworkAccessManager *networkManager;
     QNetworkReply *captchaImageReply;
+    QNetworkReply *loginReply;
     QList<QNetworkCookie> cookiesForAIOCP;
     QString captchaCode;
 };
