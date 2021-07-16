@@ -1,6 +1,7 @@
 ﻿#include "snowloginwindow.h"
 #include "ui_snowloginwindow.h"
 #include "captchaimagedialog.h"
+#include "aboutdialog.h"
 #include <QNetworkCookieJar>
 #include <QWebEngineCookieStore>
 #include <QWebEngineProfile>
@@ -19,6 +20,7 @@ SnowLoginWindow::SnowLoginWindow(QWidget *parent)
     this->ui->statusbar->setToolTip(QStringLiteral("Email： me@xuefeng.space"));
     this->networkManager = new QNetworkAccessManager(this);
     QObject::connect(this->ui->loginButton, SIGNAL(clicked(bool)), this, SLOT(onLoginButtonClicked()));
+    QObject::connect(this->ui->aboutButton, SIGNAL(clicked(bool)), this, SLOT(onAboutButtonClicked()));
 }
 
 SnowLoginWindow::~SnowLoginWindow()
@@ -32,6 +34,13 @@ void SnowLoginWindow::onLoginButtonClicked()
 {
     this->ui->loginButton->setDisabled(true);
     this->startRequestingCaptchaImage();
+}
+
+void SnowLoginWindow::onAboutButtonClicked()
+{
+    AboutDialog aboutDialog(this);
+    aboutDialog.show();
+    aboutDialog.exec();
 }
 
 void SnowLoginWindow::onRequestCaptchaImageFinished()
@@ -78,7 +87,7 @@ void SnowLoginWindow::onRequestCaptchaImageFinished()
 void SnowLoginWindow::onLoginFinished()
 {
     qDebug() << "onLoginFinished()-recv: " << this->loginReply->bytesAvailable();
-    qDebug() << "onLoginFinished()-returnCode: " + this->loginReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+    qDebug() << "onLoginFinished()-returnCode: " + this->loginReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toString();
     qDebug() << "onLoginFinished()-status: " + this->loginReply->attribute(QNetworkRequest::HttpReasonPhraseAttribute).toString();
     this->ui->statusbar->showMessage("Received " + QString::number(this->loginReply->bytesAvailable()) + " bytes from server");
 

@@ -7,6 +7,7 @@ CaptchaImageDialog::CaptchaImageDialog(QString &_captchaCode, QWidget *parent) :
     ui(new Ui::CaptchaImageDialog)
 {
     ui->setupUi(this);
+    this->setWindowFlags(Qt::Window | Qt::WindowTitleHint | Qt::CustomizeWindowHint);
     QObject::connect(this->ui->pushButton_Ok, SIGNAL(clicked(bool)), this, SLOT(onPushButtonOkClicked()));
 }
 

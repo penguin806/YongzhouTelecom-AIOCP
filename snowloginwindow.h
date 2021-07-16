@@ -21,6 +21,7 @@ public:
 
 private slots:
     void onLoginButtonClicked();
+    void onAboutButtonClicked();
     void onRequestCaptchaImageFinished();
     void onLoginFinished();
     void displayAiocpWebView();
